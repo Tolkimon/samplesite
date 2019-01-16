@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    this is the index page
+{% endblock %}
+
+{% block body %}
+    <ol><li>
+    {% for question in questions %}
+    <a href="{% url 'polls:detail' question.id%}">Question: {{ question.question_text }} <br />
+    </a>
+    {% for choice in question.choices.all %}
+        {{ choice.choice_text }} <br />
+        {{ choice.votes}}
+    </li>
+    {% endfor %}
+    </ol>
+    <br />
+    {% endfor %}
+{% endblock %}
