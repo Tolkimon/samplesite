@@ -1,11 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.urls import path, include
+from .models import Question
 
 # Create your views here.
 
 def index(request):
-    return HttpResponse('hello world')
+    context = {}
+    questions = Question.objects.all()
+    context['questions'] = questions
+    return render(request, 'index.html', context)
+
 
 def help(request):
     return HttpResponse('This is help page')    
+
+
